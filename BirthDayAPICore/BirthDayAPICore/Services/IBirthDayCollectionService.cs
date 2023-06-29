@@ -8,5 +8,7 @@ namespace BirthDayAPICore.Services
         public List<BirthDay> GetBirthDaysFriends(int userId);
 
         public bool AddBirthDay(BirthDay birthDay);
+
+        public bool EditBirthDay(BirthDay birthDay);
     }
 }

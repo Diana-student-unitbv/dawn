@@ -1,14 +1,14 @@
-using BirthDayAPICore.Services;
+﻿using BirthDayAPICore.Services;
 using BirthDayAPICore.Settings;
 using Microsoft.Extensions.Options;
-
+//se crează un builder pentru aplicația ASP.NET Core
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
+//adaugă suportul pentru controlere în aplicație.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
+//spunem cum se face injectarea (interfata si implementarea unui serviciu petru a  putea fi injectat in clasele in care sunt folosite)
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection(nameof(MongoDBSettings)));
 builder.Services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
 builder.Services.AddCors(options =>
@@ -31,7 +31,7 @@ builder.Services.AddSingleton<IBirthDayCollectionService, BirthDayCollectionServ
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//Se configurează pipeline-ul de procesare al cererilor HTTP utilizând diferite metode
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

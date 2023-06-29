@@ -1,7 +1,7 @@
 ﻿using BirthDayAPICore.Models;
 using BirthDayAPICore.Services;
 using Microsoft.AspNetCore.Mvc;
-
+//controller ce se ocupă de requesturile dedicate utilizatorilor. 
 namespace BirthDayAPICore.Controllers
 {
     [ApiController]
@@ -14,6 +14,8 @@ namespace BirthDayAPICore.Controllers
         }
 
         [HttpPost]
+        // acest endpoint este folosit pentru a crea un nou user la înregistrare.
+        //Acesta primeste ca body un obiect de tipul User si primeste ca response Ok(user).
         public IActionResult Create([FromBody] User user)
         {
             var result =  _usersCollectionService.AddUser(user);
@@ -21,6 +23,7 @@ namespace BirthDayAPICore.Controllers
         }
 
         [HttpGet]
+       
         public IActionResult GetAll()
         {
             return Ok( _usersCollectionService.GetUsers());
@@ -31,6 +34,8 @@ namespace BirthDayAPICore.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        
+        //acest endpoint returnează pe baza emailului si a parolei un user sau empty, pentru autentificare.
         [HttpGet("getByEmailPass/{email}/{pass}")]
         public ActionResult<User> GetById( string email, string pass)
         {

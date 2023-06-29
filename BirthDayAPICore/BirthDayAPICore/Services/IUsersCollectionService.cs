@@ -1,5 +1,5 @@
 ﻿using BirthDayAPICore.Models;
-
+//interfata pentru User
 namespace BirthDayAPICore.Services
 {
     public interface IUsersCollectionService
